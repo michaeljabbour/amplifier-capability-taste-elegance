@@ -1,6 +1,6 @@
 # Taste × Elegance
 
-[Open the interactive guide and get the skill](https://michaeljabbour.github.io/amplifier-skill-taste/).
+[Open the interactive guide and get the skill](https://michaeljabbour.github.io/amplifier-capability-taste-elegance/).
 
 A lightweight skill that guides users and agents toward taste and elegance through the user's distinct experience and reasoning. Use it to explore writing, design, products, technical solutions, and agent-generated options, then choose a worthwhile refinement or reframe without overengineering. It does not give people taste or elegance, and an AI does not become the authority on either.
 
@@ -13,8 +13,8 @@ This project pairs the reusable [`improve-taste-and-elegance` skill](skills/impr
 Bring a draft, design or artifact and what matters to you about it. Compare it with a worse move and a better one, then choose with the reasons visible.
 
 ```sh
-git clone https://github.com/michaeljabbour/amplifier-skill-taste.git
-cd amplifier-skill-taste
+git clone https://github.com/michaeljabbour/amplifier-capability-taste-elegance.git
+cd amplifier-capability-taste-elegance
 python3 scripts/capability.py install --dest ~/.agents/skills
 ```
 
@@ -31,7 +31,7 @@ If your tool supports reusable skills, copy the `skills/improve-taste-and-elegan
 This repository is also an Amplifier bundle (`taste-elegance`). Add its behavior to your current host:
 
 ```bash
-amplifier bundle add "git+https://github.com/michaeljabbour/amplifier-skill-taste@main#subdirectory=behaviors/taste-elegance.yaml" --app
+amplifier bundle add "git+https://github.com/michaeljabbour/amplifier-capability-taste-elegance@main#subdirectory=behaviors/taste-elegance.yaml" --app
 ```
 
 For a local checkout that stays in step with your edits, use `file:///<path-to-checkout>/behaviors/taste-elegance.yaml` instead. Remove with `amplifier bundle remove taste-elegance-behavior --app`. Start a new session, then:
@@ -89,7 +89,7 @@ Preview over HTTP: the example selector reads a local JSON file. If clipboard ac
 
 The site opens with a one-minute lesson film that teaches the two questions with an everyday example; see [how it was made](docs/FILM.md).
 
-The public source is in the [amplifier-skill-taste repository](https://github.com/michaeljabbour/amplifier-skill-taste). The primary entry point is the [live website](https://michaeljabbour.github.io/amplifier-skill-taste/). The Pages workflow builds and checks `_site/` on pushes to `main`, then publishes only that static output. It uses GitHub’s official actions pinned to fixed commits and needs no project secrets. See [site details](site/README.md) for deployment maintenance.
+The public source is in the [amplifier-capability-taste-elegance repository](https://github.com/michaeljabbour/amplifier-capability-taste-elegance). The primary entry point is the [live website](https://michaeljabbour.github.io/amplifier-capability-taste-elegance/). The Pages workflow builds and checks `_site/` on pushes to `main`, then publishes only that static output. It uses GitHub’s official actions pinned to fixed commits and needs no project secrets. See [site details](site/README.md) for deployment maintenance.
 
 ## Project contents
 
@@ -123,8 +123,14 @@ configuration, and institutional attribution are not part of this project.
 
 Make it more intentional and simpler while keeping it yours.
 
-Read the [installation guide](docs/INSTALL.md) for the supported local path and [consolidation record](docs/CONSOLIDATION.md) for ownership and evidence limits. Canonical catalog name: **Taste × Elegance**; repository: `amplifier-skill-taste`.
+Read the [installation guide](docs/INSTALL.md) for the supported local path and [consolidation record](docs/CONSOLIDATION.md) for ownership and evidence limits. Canonical catalog name: **Taste × Elegance**; repository: `amplifier-capability-taste-elegance`.
 
 ## Repository migration
 
 This repository was renamed from `amplifier-skill-taste` to `amplifier-capability-taste-elegance`. Existing installed method names, bundle aliases and native interfaces stay the same. See the [migration guide](https://michaeljabbour.github.io/migration/) and [repository map](https://michaeljabbour.github.io/migration/mapping.json) for source URL updates.
+
+## Structured record compatibility
+
+The optional improvement record now has an explicit delegated **v2** contract. The closed [v1 schema](skills/improve-taste-and-elegance/references/improvement-round.schema.json) remains byte-identical; new loop/lens/capture metadata uses [v2](skills/improve-taste-and-elegance/references/improvement-round.v2.schema.json). Keep v1 output for v1-only consumers. Do not strip evidence or relabel versions to bypass validation. [Record guidance](skills/improve-taste-and-elegance/references/improvement-round.md) explains the independent two-round budget, scope and proposed/no-authority default.
+
+For deterministic contract regressions, use an existing environment with `jsonschema`: `make contract-check PYTHON=/path/to/python`. This runs schema and semantic boundary fixtures without installing packages, calling models or measuring aesthetic or human benefit. The optional checker returns no runtime authority.

@@ -1,0 +1,520 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:amplifier:improvement-round:v2",
+  "title": "Improvement round/v2",
+  "description": "Explicit delegated-record version; v1 remains unchanged. Metadata validation does not authenticate authority or grant runtime permissions.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "round_id",
+    "brief",
+    "baseline",
+    "candidate",
+    "change",
+    "gates",
+    "comparison",
+    "decision",
+    "budget"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "improvement-round/v2"
+    },
+    "round_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "loop": {
+      "description": "Optional. Groups rounds run without the user for one review together. A loop does not authorize adoption.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "parent_round_id": {
+          "description": "The earlier round whose candidate this round's baseline is, when rounds are stacked.",
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "brief": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "intent",
+        "audience",
+        "source_ref",
+        "lens_status",
+        "must_preserve"
+      ],
+      "properties": {
+        "intent": {
+          "type": "string",
+          "minLength": 1
+        },
+        "audience": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "lens_status": {
+          "enum": [
+            "stated",
+            "assumed"
+          ]
+        },
+        "lens_ref": {
+          "description": "Optional. Where the lens came from: the user's own answers, or the labeled assumed lens.",
+          "type": "string",
+          "minLength": 1
+        },
+        "must_preserve": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "baseline": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artifact_ref",
+        "sha256"
+      ],
+      "properties": {
+        "artifact_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "candidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artifact_ref",
+        "sha256"
+      ],
+      "properties": {
+        "artifact_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "change": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "hypothesis",
+        "predicted_benefit",
+        "regression_risk"
+      ],
+      "properties": {
+        "mode": {
+          "enum": [
+            "hillclimb",
+            "jump"
+          ]
+        },
+        "hypothesis": {
+          "type": "string",
+          "minLength": 1
+        },
+        "predicted_benefit": {
+          "type": "string",
+          "minLength": 1
+        },
+        "regression_risk": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "gates": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "critical",
+          "status",
+          "evidence_ref",
+          "reason"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "critical": {
+            "type": "boolean"
+          },
+          "status": {
+            "enum": [
+              "pass",
+              "fail",
+              "unknown",
+              "not-applicable"
+            ]
+          },
+          "evidence_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "comparison": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "brief_ref",
+        "observations",
+        "taste",
+        "elegance"
+      ],
+      "properties": {
+        "brief_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "observations": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "captures": {
+          "description": "Optional. Baseline and candidate artifacts captured under the same named condition, such as a viewport and state.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "condition",
+              "baseline_ref",
+              "candidate_ref",
+              "method"
+            ],
+            "properties": {
+              "condition": {
+                "type": "string",
+                "minLength": 1
+              },
+              "baseline_ref": {
+                "type": "string",
+                "minLength": 1
+              },
+              "candidate_ref": {
+                "type": "string",
+                "minLength": 1
+              },
+              "method": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Named capture tool/method, kept fixed with the condition across the loop."
+              }
+            }
+          },
+          "minItems": 1
+        },
+        "taste": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "reason"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "hypothesis",
+                "observed",
+                "unknown"
+              ]
+            },
+            "reason": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "elegance": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "reason"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "hypothesis",
+                "observed",
+                "unknown"
+              ]
+            },
+            "reason": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    },
+    "decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "action",
+        "authority",
+        "source_ref",
+        "reason",
+        "rollback_ref"
+      ],
+      "properties": {
+        "action": {
+          "enum": [
+            "proposed",
+            "keep",
+            "undo",
+            "defer"
+          ],
+          "default": "proposed"
+        },
+        "authority": {
+          "enum": [
+            "human",
+            "delegated",
+            "none"
+          ],
+          "default": "none"
+        },
+        "source_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "rollback_ref": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "budget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "rounds_limit",
+        "rounds_used",
+        "stop_reason"
+      ],
+      "properties": {
+        "rounds_limit": {
+          "type": "integer",
+          "minimum": 1,
+          "default": 2
+        },
+        "rounds_used": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "stop_reason": {
+          "enum": [
+            "continue",
+            "success",
+            "no-meaningful-gain",
+            "budget-exhausted",
+            "gate-blocked",
+            "owner-stop"
+          ]
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "decision": {
+            "properties": {
+              "action": {
+                "enum": [
+                  "keep",
+                  "undo"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "decision": {
+            "properties": {
+              "authority": {
+                "enum": [
+                  "human",
+                  "delegated"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "decision": {
+            "properties": {
+              "action": {
+                "const": "keep"
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "gates": {
+            "not": {
+              "contains": {
+                "properties": {
+                  "critical": {
+                    "const": true
+                  },
+                  "status": {
+                    "enum": [
+                      "fail",
+                      "unknown"
+                    ]
+                  }
+                },
+                "required": [
+                  "critical",
+                  "status"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "decision": {
+            "properties": {
+              "action": {
+                "enum": [
+                  "proposed",
+                  "defer"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "decision": {
+            "properties": {
+              "authority": {
+                "const": "none"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "gates": {
+            "contains": {
+              "properties": {
+                "critical": {
+                  "const": true
+                },
+                "status": {
+                  "enum": [
+                    "fail",
+                    "unknown"
+                  ]
+                }
+              },
+              "required": [
+                "critical",
+                "status"
+              ]
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "budget": {
+            "properties": {
+              "stop_reason": {
+                "not": {
+                  "const": "continue"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "x-semantic-constraints": [
+    "comparison.brief_ref must equal brief.source_ref.",
+    "Gate IDs must be unique.",
+    "rounds_used cannot exceed rounds_limit; when equal stop_reason cannot be continue.",
+    "Critical fail or unknown blocks a recorded keep; a score does not bypass the gate.",
+    "A human/delegated decision cites the actual user/delegation source; the record cannot authenticate it or grant runtime authorization.",
+    "Baseline content/hash must remain the same within a round ID.",
+    "Taste and elegance remain independent reasons; no combined score.",
+    "Each capture's baseline and candidate use the same condition and capture method; rounds in one loop keep the same conditions.",
+    "loop.parent_round_id names an earlier round in the same loop, and its candidate is this round's baseline.",
+    "An assumed lens stays labeled assumed in every round of a loop until the user states or corrects it.",
+    "Declared rounds_limit must not exceed the independently supplied operator budget; absent an explicit larger budget the default remains two.",
+    "Artifact references must be in the independently supplied operator scope. The record never creates this scope.",
+    "A keep/undo record needs a matching operator-supplied decision authorization; matching metadata is not proof of actual human authority.",
+    "A proposed/deferred record explicitly uses authority none; JSON Schema defaults are annotations, not automatic record mutation.",
+    "Across a loop count every unique round, including proposed/unverified rounds, and keep the same brief, declared budget and capture conditions/methods."
+  ]
+}

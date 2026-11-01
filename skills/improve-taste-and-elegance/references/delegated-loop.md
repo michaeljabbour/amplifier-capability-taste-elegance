@@ -39,7 +39,7 @@ Artifacts show what changed. They are evidence for gates and for the user's comp
 
 Give the user one review: the lens and whether it is stated or assumed, then per round the before/after artifacts in the same order, the change, gates, axis reasons, dependencies and the undo. End with your questions, most decisive first, and one suggestion for what to try next. Ask them to keep or undo each round and to correct the lens. Their reactions update the decision note and the lens for any later loop.
 
-When a harness needs records, write one improvement-round record per round ([improvement-round.md](improvement-round.md)). Use `loop` to group the rounds and name stacked parents, `brief.lens_ref` to point at the lens, and `comparison.captures` for the fixed-condition artifacts.
+When a harness needs records, explicitly select improvement-round/v2 ([improvement-round.md](improvement-round.md)); the closed v1 contract stays unchanged. Use `loop` to group rounds and name stacked parents, `brief.lens_ref` for the lens source, and `comparison.captures` for paired artifacts with the same named condition and capture method. Supply scope, budget and any decision authorization independently; a model-produced record cannot grant them.
 
 ## Pairing
 

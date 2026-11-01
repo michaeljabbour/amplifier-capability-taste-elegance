@@ -107,17 +107,20 @@ def check(output):
     print('PASS: four code versions rendered; baseline and two refinements preserve exact output on both service paths')
     skill = (SKILL_DIR / 'SKILL.md').read_text(encoding='utf-8')
     assert page.skill == skill, 'Copy source differs from canonical SKILL.md'
-    for name in ('SKILL.md', 'references/calibration.md', 'references/improvement-round.md', 'references/improvement-round.schema.json', 'references/delegated-loop.md', 'LICENSE'):
+    for name in ('SKILL.md', 'references/calibration.md', 'references/improvement-round.md', 'references/improvement-round.schema.json', 'references/improvement-round.v2.schema.json', 'references/validate_round.py', 'references/delegated-loop.md', 'LICENSE'):
         assert (SKILL_DIR / name).read_bytes() == (output / name).read_bytes(), f'Download changed source: {name}'
     with ZipFile(output / 'improve-taste-and-elegance.zip') as bundle:
-        assert bundle.namelist() == ['improve-taste-and-elegance/SKILL.md', 'improve-taste-and-elegance/references/calibration.md', 'improve-taste-and-elegance/references/improvement-round.md', 'improve-taste-and-elegance/references/improvement-round.schema.json', 'improve-taste-and-elegance/references/delegated-loop.md', 'improve-taste-and-elegance/LICENSE']
+        assert bundle.namelist() == ['improve-taste-and-elegance/SKILL.md', 'improve-taste-and-elegance/references/calibration.md', 'improve-taste-and-elegance/references/improvement-round.md', 'improve-taste-and-elegance/references/improvement-round.schema.json', 'improve-taste-and-elegance/references/improvement-round.v2.schema.json', 'improve-taste-and-elegance/references/validate_round.py', 'improve-taste-and-elegance/references/delegated-loop.md', 'improve-taste-and-elegance/LICENSE']
         assert bundle.testzip() is None
-        for name in ('SKILL.md', 'references/calibration.md', 'references/improvement-round.md', 'references/improvement-round.schema.json', 'references/delegated-loop.md', 'LICENSE'):
+        for name in ('SKILL.md', 'references/calibration.md', 'references/improvement-round.md', 'references/improvement-round.schema.json', 'references/improvement-round.v2.schema.json', 'references/validate_round.py', 'references/delegated-loop.md', 'LICENSE'):
             assert bundle.read('improve-taste-and-elegance/' + name) == (SKILL_DIR / name).read_bytes(), f'Bundle changed source: {name}'
     contract = json.loads((SKILL_DIR / 'references/improvement-round.schema.json').read_text(encoding='utf-8'))
     assert contract['properties']['schema_version']['const'] == 'improvement-round/v1', 'Unexpected improvement-round contract version'
-    # Fields added within v1 stay optional so existing records remain valid.
-    assert not {'loop'} & set(contract['required']) and 'lens_ref' not in contract['properties']['brief']['required'] and 'captures' not in contract['properties']['comparison']['required'], 'Optional v1 fields became required'
+    # A closed v1 reader rejects new properties, even when new writers call them optional.
+    assert 'loop' not in contract['properties'] and 'lens_ref' not in contract['properties']['brief']['properties'] and 'captures' not in contract['properties']['comparison']['properties'], 'Closed v1 contract changed'
+    delegated = json.loads((SKILL_DIR / 'references/improvement-round.v2.schema.json').read_text())
+    assert delegated['$id'] == 'urn:amplifier:improvement-round:v2' and delegated['properties']['schema_version']['const'] == 'improvement-round/v2', 'Delegated version is not explicit'
+    assert {'loop'} <= set(delegated['properties']) and 'lens_ref' in delegated['properties']['brief']['properties'] and 'captures' in delegated['properties']['comparison']['properties'], 'Missing v2 delegated metadata'
     assert len(page.downloads) == 2, 'Expected skill and bundle download links'
     examples = json.loads((output / 'assets/examples.json').read_text(encoding='utf-8'))
     assert len(examples) == 3 and len({e['id'] for e in examples}) == 3

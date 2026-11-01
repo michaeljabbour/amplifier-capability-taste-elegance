@@ -7,8 +7,8 @@ Bring a draft, design or artifact and what matters to you about it. Compare it w
 Use Git and Python 3.11 or later. These commands install the complete method into a skills-parent directory:
 
 ```sh
-git clone https://github.com/michaeljabbour/amplifier-skill-taste.git
-cd amplifier-skill-taste
+git clone https://github.com/michaeljabbour/amplifier-capability-taste-elegance.git
+cd amplifier-capability-taste-elegance
 python3 scripts/capability.py install --dest ~/.agents/skills
 ```
 
@@ -18,7 +18,7 @@ The installer refuses conflicting files. Keep your changes before deliberately r
 
 ## Without a checkout
 
-Download the complete ZIP from [the public site](https://michaeljabbour.github.io/amplifier-skill-taste/#use-skill), extract it and place the whole skill folder in your host’s skills directory. Keep all references, helpers and license files together. The single SKILL.md download is for reading; use the whole folder to install.
+Download the complete ZIP from [the public site](https://michaeljabbour.github.io/amplifier-capability-taste-elegance/#use-skill), extract it and place the whole skill folder in your host’s skills directory. Keep all references, helpers and license files together. The single SKILL.md download is for reading; use the whole folder to install.
 
 ## What to expect
 

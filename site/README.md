@@ -70,5 +70,5 @@ secrets or backend services are needed. Official GitHub action revisions are
 pinned to fixed commits. Future pushes to `main` rebuild and redeploy the site;
 manual runs are also available from Actions.
 
-The live URL is <https://michaeljabbour.github.io/amplifier-skill-taste/>. Keep
+The live URL is <https://michaeljabbour.github.io/amplifier-capability-taste-elegance/>. Keep
 asset, navigation, and download paths relative so repository-subpath hosting works.
