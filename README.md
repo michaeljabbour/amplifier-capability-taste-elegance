@@ -24,7 +24,7 @@ Requires Git and Python 3.11+. Use the skills directory supported by your agent.
 
 Give an agent the skill and a concrete artifact or set of options. Include the audience, purpose, constraints, and what success would look like. Share what shaped your choices: an experience, an admired or disliked example and why, a tension, what feels wrong, or a distinct intent that must survive changes. The agent should reflect your reasoning for correction and derive provisional criteria with you. This is a compact conversation, not a large questionnaire; at most three missing-context questions are appropriate, only where answers would change the recommendation.
 
-If your tool supports reusable skills, copy the `skills/improve-taste-and-elegance/` directory (`SKILL.md` plus `references/calibration.md`) according to that tool's instructions. Keep the relative `references/` path intact.
+If your tool supports reusable skills, copy the `skills/improve-taste-and-elegance/` directory (`SKILL.md` plus `references/`) according to that tool's instructions. Keep the relative `references/` path intact.
 
 ### In Amplifier
 
@@ -95,6 +95,7 @@ The public source is in the [amplifier-skill-taste repository](https://github.co
 
 - `skills/improve-taste-and-elegance/SKILL.md` — canonical revised instructions for facilitation, agency, jumps, and refinements.
 - `skills/improve-taste-and-elegance/references/calibration.md` — eight invitations, two ways forward, optional independent anchors, and examples.
+- `skills/improve-taste-and-elegance/references/delegated-loop.md` — rounds run without the user: the lens captured once, a bounded budget, fixed-condition before/after captures, and one review together.
 - `bundle.md`, `behaviors/taste-elegance.yaml` — the Amplifier bundle and its installable behavior.
 - `modes/taste.md` — the `/taste` mode.
 - `recipes/` — the `taste-round` and `taste-spectrum` staged recipes.

@@ -25,6 +25,25 @@
       "type": "string",
       "minLength": 1
     },
+    "loop": {
+      "description": "Optional. Groups rounds run without the user for one review together. A loop does not authorize adoption.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "parent_round_id": {
+          "description": "The earlier round whose candidate this round's baseline is, when rounds are stacked.",
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
     "brief": {
       "type": "object",
       "additionalProperties": false,
@@ -53,6 +72,11 @@
             "stated",
             "assumed"
           ]
+        },
+        "lens_ref": {
+          "description": "Optional. Where the lens came from: the user's own answers, or the labeled assumed lens.",
+          "type": "string",
+          "minLength": 1
         },
         "must_preserve": {
           "type": "array",
@@ -188,6 +212,33 @@
           "items": {
             "type": "string",
             "minLength": 1
+          }
+        },
+        "captures": {
+          "description": "Optional. Baseline and candidate artifacts captured under the same named condition, such as a viewport and state.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "condition",
+              "baseline_ref",
+              "candidate_ref"
+            ],
+            "properties": {
+              "condition": {
+                "type": "string",
+                "minLength": 1
+              },
+              "baseline_ref": {
+                "type": "string",
+                "minLength": 1
+              },
+              "candidate_ref": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
           }
         },
         "taste": {
@@ -381,6 +432,9 @@
     "Critical fail or unknown blocks a recorded keep; a score does not bypass the gate.",
     "A human/delegated decision cites the actual user/delegation source; the record cannot authenticate it or grant runtime authorization.",
     "Baseline content/hash must remain the same within a round ID.",
-    "Taste and elegance remain independent reasons; no combined score."
+    "Taste and elegance remain independent reasons; no combined score.",
+    "Each capture's baseline and candidate use the same condition and capture method; rounds in one loop keep the same conditions.",
+    "loop.parent_round_id names an earlier round in the same loop, and its candidate is this round's baseline.",
+    "An assumed lens stays labeled assumed in every round of a loop until the user states or corrects it."
   ]
 }
