@@ -23,7 +23,7 @@ Start from available examples and context. Ask one or two useful questions at a 
 
 Invite personal experience without requiring intimate disclosure; examples and task constraints are enough. For technical work, a failure someone operated through can be as revealing as an admired design. For agents, use the user's expressed intent and examples; do not invent a biography, preferences, or lived experience.
 
-Reflect back a short, tentative interpretation: “It sounds like you value X because Y, while wanting to preserve Z. What am I missing?” Distinguish their stated values from your inference. Invite correction before consequential reframing; do not silently convert a provisional interpretation into a fixed preference. When they delegate judgment or cannot answer, state assumptions and offer a reversible exploration rather than stalling. If you cannot ask the user at all, for example because you were delegated this task, work only from the brief and examples you were given, label the lens as assumed, and return your questions with the result instead of answering them yourself.
+Reflect back a short, tentative interpretation: “It sounds like you value X because Y, while wanting to preserve Z. What am I missing?” Distinguish their stated values from your inference. Invite correction before consequential reframing; do not silently convert a provisional interpretation into a fixed preference. When they delegate judgment or cannot answer, state assumptions and offer a reversible exploration rather than stalling. If you cannot ask the user at all, for example because you were delegated this task, work only from the brief and examples you were given, label the lens as assumed, and return your questions with the result instead of answering them yourself. When the user wants several rounds run without them, capture the lens once up front, or label it assumed, and follow [references/delegated-loop.md](references/delegated-loop.md): an agreed budget, every round a proposal with its artifacts, reviewed together.
 
 Carry the reasons forward. Keep a compact decision note with the brief: the choice, whose stated intent or evidence supports it, what must survive, and what would justify revisiting it. Consult it before later suggestions; preserve deliberate exceptions unless there is a reason to reconsider them. Keep assumptions visibly provisional and incorporate the user's corrections. Include the note in the handoff, or save it where future work will read it when authorized, such as a file beside the artifact or the project's agent instructions file; do not claim persistent memory unless it was actually saved in a place future work will read.
 
@@ -35,7 +35,7 @@ Check correctness, safety, accessibility, and feasibility. Mark relevant gates p
 
 ## Choose how to move
 
-Identify the bottleneck together, then choose a mode deliberately:
+Identify the bottleneck together. If a usefulness review has already named what to fix, treat that as the starting bottleneck; this skill shapes how to fix it well. Then choose a mode deliberately:
 
 **Conceptual jump / reframe:** Use when the problem framing, organizing idea, or assumed constraint prevents progress; when local edits stall; or when an unexpected reference reveals another possibility. Ask “What if we changed the organizing idea while preserving what matters most?” Offer one materially different sketch or hypothesis, not a wholesale redesign by default. Explain what changes, what stays, and what could be lost. Let the user recognize or reject its resonance. A jump changes the search direction, not the authorization boundary.
 
@@ -47,7 +47,7 @@ If uncertain, present the two routes briefly and recommend one from the bottlene
 
 Choose a test or inspection before changing anything; preserve the baseline and a rollback path. Edit only the authorized artifact and scope. Discussion or critique does not authorize external editing, sending, publishing, or deployment. For proposal-only work, offer the experiment and stop pending authorization or evidence.
 
-Recheck relevant gates and criteria using actual evidence. Ask what the user notices in the comparison: what feels truer, what became easier, and what disappeared? Treat their response as evidence about intent and resonance, not proof of external performance. Keep changes supported by the brief and evidence; roll back authorized edits or recommend reverting when gains do not justify losses. Report what remains unverified.
+Recheck relevant gates and criteria using actual evidence. Compare like with like: capture baseline and candidate under the same fixed conditions, such as the same viewports and states for an interface. Ask what the user notices in the comparison: what feels truer, what became easier, and what disappeared? Treat their response as evidence about intent and resonance, not proof of external performance. Keep changes supported by the brief and evidence; roll back authorized edits or recommend reverting when gains do not justify losses. Report what remains unverified.
 
 Stop when success is met, no meaningful gain justifies the cost, or the agreed budget ends. Default to at most two rounds, counting proposed-but-unverified rounds. Honor explicit budgets and monitoring requests. Leave one useful question or next experiment, not an endless optimization program.
 

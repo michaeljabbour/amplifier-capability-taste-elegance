@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased — delegated rounds and fixed-condition evidence
+
+- Add `references/delegated-loop.md` for rounds run without the user: capture the lens once in a brief of at most three questions, or label it assumed; agree scope, budget and where candidates live; run one change per round as a proposal; prefer hillclimbs under an assumed lens; hand every round over for one review together, with questions first. AI scores and records still never substitute for the user's judgment or authorization; a keep needs the user or an explicit delegation.
+- Compare like with like: capture baseline and candidate under the same fixed conditions, for interfaces the same viewports and states (for example empty, loading, populated, error), with analogous conditions for writing, media and code.
+- Add one pairing sentence: when a usefulness review has named what to fix, take it as the starting bottleneck; this skill shapes how.
+- Keep the published closed improvement-round/v1 schema byte-identical. Add explicit improvement-round/v2 for `loop`, `brief.lens_ref` and fixed-condition `comparison.captures`, including a named capture method. Old readers continue to receive v1 records; v2 is an explicit opt-in, not an in-place compatible extension.
+- Add repeatable negative JSON Schema and semantic tests, plus an optional read-only checker for independent scope/budget/decision metadata, baseline and parent linkage, fixed conditions and assumed-lens correction. Proposed/deferred records carry no authority. Validation never grants execution permission or establishes aesthetic/audience benefit.
+- Point active guide, clone and behavior-source documentation at the canonical capability repository; preserve method IDs, bundle names, fragments and migration history.
+
 ## 2026-10-30 — Public benchmark privacy
 
 - Replace only personal checkout prefixes in 35 historical benchmark task and execution records with an explicit public placeholder. Label the copies and publish original/public-copy hashes; preserve all responses, judgments, grading content and results. Original raw records remain in retained history and an owner-local backup. No new behavioral evaluation is claimed.
