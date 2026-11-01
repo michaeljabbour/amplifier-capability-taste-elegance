@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased — optional coaching checkpoint
+
+- Add a self-contained opt-in practice/review guide with a fictional task, preserved baseline, explicit scope/budget, user stop, reviewed keep/revert and private-by-choice records. Keep native operations, existing method budgets and evidence rules unchanged; no human efficacy or outside-use result is claimed.
+
 ## Unreleased — delegated rounds and fixed-condition evidence
 
 - Add `references/delegated-loop.md` for rounds run without the user: capture the lens once in a brief of at most three questions, or label it assumed; agree scope, budget and where candidates live; run one change per round as a proposal; prefer hillclimbs under an assumed lens; hand every round over for one review together, with questions first. AI scores and records still never substitute for the user's judgment or authorization; a keep needs the user or an explicit delegation.

@@ -11,7 +11,7 @@ from zipfile import ZIP_DEFLATED, ZipFile, ZipInfo
 
 ROOT = Path(__file__).resolve().parents[1]
 SKILL_DIR = ROOT / 'skills/improve-taste-and-elegance'
-SKILL_FILES = ('SKILL.md', 'references/calibration.md', 'references/improvement-round.md', 'references/improvement-round.schema.json', 'references/improvement-round.v2.schema.json', 'references/validate_round.py', 'references/delegated-loop.md', 'LICENSE')
+SKILL_FILES = ('SKILL.md', 'references/calibration.md', 'references/improvement-round.md', 'references/improvement-round.schema.json', 'references/improvement-round.v2.schema.json', 'references/validate_round.py', 'references/delegated-loop.md', 'references/coaching-session.v1.md', 'LICENSE')
 
 
 def escape(value):

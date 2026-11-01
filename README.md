@@ -134,3 +134,7 @@ This repository was renamed from `amplifier-skill-taste` to `amplifier-capabilit
 The optional improvement record now has an explicit delegated **v2** contract. The closed [v1 schema](skills/improve-taste-and-elegance/references/improvement-round.schema.json) remains byte-identical; new loop/lens/capture metadata uses [v2](skills/improve-taste-and-elegance/references/improvement-round.v2.schema.json). Keep v1 output for v1-only consumers. Do not strip evidence or relabel versions to bypass validation. [Record guidance](skills/improve-taste-and-elegance/references/improvement-round.md) explains the independent two-round budget, scope and proposed/no-authority default.
 
 For deterministic contract regressions, use an existing environment with `jsonschema`: `make contract-check PYTHON=/path/to/python`. This runs schema and semantic boundary fixtures without installing packages, calling models or measuring aesthetic or human benefit. The optional checker returns no runtime authority.
+
+## Optional coaching
+
+For an explicitly requested practice or review checkpoint, use [the local coaching guide](skills/improve-taste-and-elegance/references/coaching-session.v1.md). It includes a fictional first task, a baseline, a bounded budget, stop rules and human-reviewed keep/revert. No learner trace is saved by default, and software checks do not establish human learning or outside-user usefulness.

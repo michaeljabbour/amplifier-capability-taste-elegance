@@ -62,3 +62,7 @@ Show the expected hillclimb as bounded steps from the baseline: one change, the 
 Keep responses lightweight: reflect the user's lens, surface the key tension, propose a jump or small adjustment, and explain how to learn from it. Read references/calibration.md for optional prompts and examples; do not recite it automatically.
 
 When a harness or another agent needs a structured improvement record, read [references/improvement-round.md](references/improvement-round.md). It links the portable contract for the brief, preserved baseline, one change hypothesis, evidence, independent axis reasons, recorded keep/undo and budget. This is optional bookkeeping; it never makes an AI score or record into user authorization.
+
+## Optional session note
+
+Read [the local coaching guide](references/coaching-session.v1.md) only when the person asks for practice or optional session bookkeeping. Keep the existing two-round default and proposed/no-authority boundaries.
